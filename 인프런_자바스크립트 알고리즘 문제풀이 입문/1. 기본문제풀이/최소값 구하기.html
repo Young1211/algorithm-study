@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>최소값 구하기</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      //7개의 수가 주어지면 그 숫자 중 가장 작은 수를 출력
+      //min이라는 최소값이 들어갈 변수를 선언
+      //반복문을 통해 arr[i]의 값이 min보다 작을 경우
+      //최소값이 arr[i]의 값이 됨
+
+      function solution(arr) {
+        //min은 가장 큰 값
+
+        let solution;
+        let min = Number.MAX_SAFE_INTEGER; //min의 기준을 만들어놓음
+        //혹은 arr[0]처럼 첫번째 숫자를 최소값으로 정함
+        //그대신 for문을 돌릴때 i를 1로 초기화해야함
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] < min) {
+            min = arr[i];
+          }
+        }
+        answer = min;
+        return answer;
+      }
+
+      let arr1 = [5, 3, 7, 11, 2, 15, 17];
+      console.log(solution(arr1)); //2
+    </script>
+  </body>
+</html>

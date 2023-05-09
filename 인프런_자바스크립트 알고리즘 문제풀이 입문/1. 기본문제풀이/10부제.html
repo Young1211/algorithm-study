@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10부제</title>
+  </head>
+  <body>
+    <script>
+      //주어진 날짜와 자동차의 일의 자리 숫자를 보고
+      //10부제를 위반하는 차량의 대수 출력
+      //자동차 번호의 일의 자리 숫자가 0 ->10, 20. 30 운행 X
+      //10(10부제이므로)로 나누었을 때의 나머지가 입력한 날짜와 같다면,
+      //카운팅해준다
+
+      function solution(num, arr) {
+        let answer = 0;
+        for (let i of arr) {
+          if (i % 10 === num) {
+            answer += 1;
+          }
+        }
+        return answer;
+      }
+      let arr = [25, 23, 11, 47, 53, 17, 33];
+      let arr2 = [12, 20, 54, 30, 87, 91, 30];
+      console.log(solution(3, arr)); //3
+      console.log(solution(1, arr2));
+    </script>
+  </body>
+</html>

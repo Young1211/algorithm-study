@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>일곱난쟁이</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        //얕은 복사
+        let answer = arr;
+        let sum = 0;
+        //sum을 먼저 구함
+        for (let i of arr) {
+          sum += i;
+        }
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            //console.log(i, j);
+            if (arr[i] + arr[j] == sum - 100) {
+              //console.log(arr[i], arr[j]); //15, 25;
+              arr.splice(i, 2);
+            }
+          }
+        }
+        return answer;
+      }
+      let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+1. 합을 구한다(난쟁이들의 키의 합)
+ 2. arr[i] + arr[j]을 구해서 sum에서 빼봄
+ 이 값이 100이 됨 -> 가짜 난쟁이
+ splice로 해서 i번째와 j번째 제거
+ -->
