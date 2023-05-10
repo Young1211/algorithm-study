@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>대소문자로 통일</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      // 대문자로 통일
+      // -대문자와 소문자가 같이 존재하는 문자열을 입력받아, 대문자로 모두
+      // 통일하여 문자열을 출력하는 프로그램 작성
+      // -toUpperCase 이용해서 한 번에 바꿔줘도 됨
+
+      //나의 풀이
+      function solution(str) {
+        let answer = "";
+        for (let x of str) {
+          answer += x.toUpperCase();
+        }
+        return answer;
+      }
+      let str = "ltisTimeTostudy";
+      console.log(solution(str)); //LTISTIMETOSTUDY
+    </script>
+  </body>
+</html>

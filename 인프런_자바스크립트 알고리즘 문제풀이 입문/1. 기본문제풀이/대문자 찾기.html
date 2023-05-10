@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>대문자 찾기</title>
+  </head>
+  <body>
+    <script>
+      /* 문제
+        한 개의 문자열을 입력받아, 
+        해당 문자열에 알파벳 대문자가 몇 개 있는지
+        알아내는 프로그램 작성
+     */
+      //풀이 1 -정규 표현식을 사용한 방법
+      ///알파벳 대문자를 기준으로 split해줌
+      //[A-Z] - 대문자
+      function solution(str) {
+        let answer = str.split(/[A-Z]/).length - 1;
+        return answer;
+      }
+
+      let str = "KoreaTimeGood"; //대문자로 입력받음
+      console.log(solution(str));
+
+      //풀이 2
+      //for문을 돌면서, 변수 x의 값을 대문자화 시켜줌
+      //입력한 값과 대문자화 된 x의 값을 비교
+      //있다면 count해줌
+
+      function solution2(str) {
+        let answer = 0;
+        for (let x of str) {
+          if (x === x.toUpperCase()) {
+            //x가 대문자와 같을 때 카운팅 해줌
+            //K와 K, o와 O, T와 T
+            answer++;
+          }
+        }
+        return answer;
+      }
+
+      let str2 = "KoreaTimeGood"; //대문자로 입력받음
+
+      console.log(solution(str2)); //3
+    </script>
+  </body>
+</html>

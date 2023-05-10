@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가장 긴 문자열</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      // N개의 문자열이 입력되면, 그 중 가장 긴 문자열을 출력하는 프로그램을 작성
+      // -첫 줄에 가장 긴 문자열을 출력함
+      //최대값 구하기 -> max
+      //max보다 큰 값을 발견하면 max를 바꿈, answer 변수에 x를 담음
+      function solution(arr) {
+        let answer = "";
+        let max = Number.MIN_SAFE_INTEGER;
+        for (let x of arr) {
+          if (x.length > max) {
+            max = x.length;
+            answer = x;
+          }
+        }
+        //max는 길이를 나타내므로 x.length를 넣음
+        //max가 9가 됨. 길이가 9인 요소를 출력해야함
+        return answer;
+      }
+      //가장 긴 문자열 -> length로 파악함
+      let arr = ["teacher", "time", "student", "beautiful", "good"];
+      console.log(solution(arr)); //beautiful
+
+      //정식 풀이
+    </script>
+  </body>
+</html>

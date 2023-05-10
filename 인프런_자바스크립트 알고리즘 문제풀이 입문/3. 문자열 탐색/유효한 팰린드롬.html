@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>팰린드롬</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      //       유효한 팰린드롬
+      // -문자열이 입력되면, 해당 문자열이 팰린드롬이면 "Yes",
+      // 아니면 "No"를 출력하는 프로그램을 작성하세요
+      // 알파벳만 가지고 회문 검사 -> 대소문자 구분 X
+      // -알파벳 이외의 문자들 무시
+      function solution(str) {
+        let answer;
+        //알파벳이 아닌 것들을 골라서 빈 문자열로 바꿈
+        ///[^a-z]/g -> g는 글로벌/전역으로 탐색!
+        //[^a-z] -> 알파벳이 아닌 숫자,문자는 모두 빈 문자열로 바꿈
+        let s = str.toLowerCase().replace(/[^a-z]/g, "");
+        if (s.split("").reverse().join("") === s) {
+          answer = "Yes";
+        } else {
+          answer = "No";
+        }
+        return answer;
+      }
+
+      let str = "found7, time: study: Yduts: emIt, 7Dnuof";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

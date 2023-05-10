@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가운데 문자 출력</title>
+  </head>
+  <body>
+    <script>
+      // 문제;
+      //   운데 문자 출력
+      // -소문자로 된 단어(문자열)이 입력되면
+      // 그 단어의 가운데 문자를 출력하는 프로그램 작성
+      // 단, 단어의 길이가 짝수일 경우 가운데 2개의 문자 출력
+
+      //나의 풀이 -> substr 함수 이용
+      //가운데의 기준 -> 홀수는 전체 길이 / 2, 짝수는 그 값에서 -1을 해줌
+      // 5인 경우 -> 시작점 2(인덱스 기준)에서 한 개 출력
+      // 6인 경우 -> 시작점 2(전체 길이 -1)에서 두 개 출력
+
+      function solution(s) {
+        let answer = "";
+        //가운데 시작 위치
+        let mid = Math.floor(s.length / 2);
+
+        if (s.length % 2 === 0) {
+          //짝수일 경우
+          answer = s.substr(mid - 1, 2);
+        } else {
+          answer = s.substr(mid, 1);
+        }
+        return answer;
+      }
+
+      let str = "study"; //u!
+      let str2 = "good"; //ooo
+      console.log(solution(str));
+      console.log(solution(str2));
+    </script>
+  </body>
+</html>

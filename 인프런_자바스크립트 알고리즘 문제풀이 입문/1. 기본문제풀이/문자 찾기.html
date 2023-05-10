@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문자 찾기</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      // 해당 특정 문자가 입력받은 문자열에 몇 개 존재하는지 알아내는
+      // 프로그램 작성
+
+      //내 풀이
+      //반복문을 돌면서 i의 값이 입력받은 char의 값과 일치하면
+      //answer(count)의 갯수를 1씩 증가시킴
+
+      function solution(str, char) {
+        let answer = 0;
+        for (let i of str) {
+          //for문을 돌면서
+          //i의 값이 char의 값과 일치하면
+          //answer의 수를 증가
+          if (i === char) {
+            answer++;
+          }
+        }
+        return answer;
+      }
+      let str = "COMPUTERPROGRAMMING"; //대문자로 입력받음
+      let char = "R"; //3
+      console.log(solution(str, char));
+
+      //두 번째 방법 - split 함수를 사용
+      //문자를 배열화 시킴, 입력받은 R를 기준으로 분리한 후, 배열 요소의 갯수를 셈
+      //빈 문자열도 포함되어 있으므로 -1 해줄 것
+      function solution2(str, char) {
+        let answer = str.split(char).length - 1;
+        console.log(s);
+        return answer;
+      }
+      let str2 = "COMPUTERPROGRAMMING"; //대문자로 입력받음
+      let char2 = "R"; //3
+      console.log(solution2(str2, char2));
+    </script>
+  </body>
+</html>

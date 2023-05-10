@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문자열 압축</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      //       문자열 압축
+      // -알파벳 대문자로 이루어진 문자열을 입력받아,
+      // 같은 문자가 연속으로 반복되는 경우
+      // 반복되는 문자 바로 오른쪽에 반복 횟수를 표기하는 방법으로
+      // 문자열을 압축하는 프로그램 작성하기
+      // -단 반복횟수가 1인 경우 생략
+
+      // 연속으로 반복되는 경우
+      // ->count
+
+      function solution(str) {
+        let answer = "";
+        let count = 1;
+        //카운트는 무조건 1이어야만 함
+        for (let i = 0; i < str.length; i++) {
+          //만약에 같은 문자가 연속으로 반복되는 경우
+          if (str[i + 1] === str[i]) {
+            count++;
+          } else {
+            answer += str[i];
+            if (count > 1) {
+              //카운트 횟수 기록
+              //2번 이상인 경우에만 출력
+              //count를 문자열로 바꿔야함
+              answer += String(count);
+            }
+            //카운트를 다시 1로 초기화
+            count = 1;
+          }
+        }
+        return answer;
+      }
+
+      let str = "KKHSSSSSSSE";
+      console.log(solution(str)); //K2HS7E
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회문문자열</title>
+  </head>
+  <body>
+    <script>
+      //문제
+
+      // 회문 문자열
+      // -앞에서 읽을 때나, 뒤에서 읽을 때나 같은 문자열
+      // ->회문 문자열(기러기 같은 느낌? 아시아)
+      // -문자열이 입력되면 해당 문자열이 회문 문자열이면 "YES", 회문 문자열이 아니면 "No"를 출력
+      // -대소문자 구분 X
+
+      // 입력예제 - gooG
+      // 출력예제 - Yes
+      // 내 풀이
+
+      //받아온 문자열을 모두 소문자로 바꿈
+      //첫 번째 문자열과 마지막 문자열 비교
+      //양 끝부터 비교
+
+      function solution(str) {
+        let s = str.toLowerCase();
+        let lgth = str.length;
+        console.log(lgth); //4
+        let answer = "";
+        for (let i = 0; i < lgth; i++) {
+          if (s[i] === s[lgth - 1 - i]) {
+            //첫번째 문자열과 마지막 문자열이 일치하면
+            answer = "Yes";
+          } else {
+            //만약 하나라도 다르다면 else문에 걸림
+            answer = "No";
+          }
+        }
+        return answer;
+      }
+
+      let str = "gooG";
+      console.log(solution(str));
+
+      //2. reverse 함수 사용
+      //split -> reverse -> join
+      function solution3(str) {
+        let answer = "Yes";
+        let s = str.toLowerCase();
+        if (s.split("").reverse().join("") !== s) {
+          return "No";
+        } else {
+          return "Yes";
+        }
+        return answer;
+      }
+
+      let str3 = "goooG";
+      console.log(solution3(str3));
+    </script>
+  </body>
+</html>

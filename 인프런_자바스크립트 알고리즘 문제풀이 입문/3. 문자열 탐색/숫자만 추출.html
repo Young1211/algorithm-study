@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자만 추출</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      //       문제 설명
+      // -문자와 숫자가 섞여있는 문자열이 주어지면
+      // 그 중 숫자만 추출하여, 그 순서대로 자연수를 만듦
+
+      // tge0a1h205er에서 숫자만 추출
+      // -0,1,2,0,5 -> 자연수 만들기 -> 1205
+
+      //내 풀이
+      //정규 표현식 이용, 숫자가 아닌 것들은 모두 빈 문자열로 바꿈
+      //숫자로 변환하면 앞에 있는 0까지 제거  0이 제거됨
+      function solution(str) {
+        let answer;
+        let s = str.replace(/[^0-9]/g, "");
+        answer = Number(s);
+        //숫자로 바꿔주면 0이 제거됨
+
+        return answer;
+      }
+      let str = "g0en2T0S8ESoft";
+      let str2 = "tge0a1h205er";
+      console.log(solution(str));
+      console.log(solution(str2));
+    </script>
+  </body>
+</html>
