@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자릿수의 합</title>
+  </head>
+  <body>
+    <script>
+      //문제
+      //   자릿수의 합
+      // -N개의 자연수가 입력되면, 각 자연수의 자릿수의 합을 구하고,
+      // 그 합이 최대인 자연수를 출력하는 프로그램을 작성.
+      // 자릿수의 합이 같은 경우, 원래 숫자가 큰 숫자를 답으로 함
+      // 235와 1234가 동시에 답이 될 수 있다면, 1234를 답으로
+
+      //1. 나머지 값을 구해, 자릿수 더하기
+      function solution(arr) {
+        let answer;
+        let max = Number.MIN_SAFE_INTEGER;
+
+        for (let i of arr) {
+          let sum = 0;
+          let temp = i;
+          while (true) {
+            let t = temp % 10;
+            sum += t;
+            //floor -> 소수점 제거
+            temp = Math.floor(temp / 10);
+            if (temp === 0) {
+              break;
+            }
+          }
+          //만약 max보다 sum이 크다면
+          //max에 sum 대입, 그리고 answer에는 자릿수의 합이 최대인 요소가 들어감
+          if (max < sum) {
+            max = sum;
+            answer = i;
+          }
+          if (max === sum) {
+            answer = i > answer ? i : answer;
+          }
+        }
+        return answer;
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(arr)); //137
+
+      //string 이용
+      //   function solution(arr) {
+      //     let answer;
+      //     let max = Number.MIN_SAFE_INTEGER;
+
+      //     for (let i of arr) {
+      //       let sum = i
+      //         .toString()
+      //         .split("")
+      //         .reduce((a, b) => {
+      //           return a + Number(b);
+      //         }, 0);
+      //       console.log(sum);
+      //       //문자배열을 reduce를 이용해서 합함
+
+      //       //만약 max보다 sum이 크다면
+      //       //max에 sum 대입, 그리고 answer에는 자릿수의 합이 최대인 요소가 들어감
+      //       if (max < sum) {
+      //         max = sum;
+      //         answer = i;
+      //       }
+      //       if (max === sum) {
+      //         answer = i > answer ? i : answer;
+      //       }
+      //     }
+      //     return answer;
+      //   }
+
+      //   let arr = [128, 460, 603, 40, 521, 137, 123];
+      //   console.log(solution(arr)); //137
+    </script>
+  </body>
+</html>
