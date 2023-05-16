@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K번째 큰 수</title>
+  </head>
+  <body>
+    <script>
+      //내 풀이 -> set을 사용하지 않고,
+      //빈 배열 newArr를 만들어, for문을 돌릴 때마다 i,j,k의 합을 배열에 push하게 함
+      //중복 제거는 filter, 내림차순 정렬은 sort를 사용함!
+
+      function solution(num, arr) {
+        let answer, result;
+        //총 10장의 카드
+        let newArr = [];
+        //빈 배열
+        let n = arr.length;
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            for (let k = j + 1; k < arr.length; k++) {
+              //합한 결과를 sum에다가 누적함
+              //console.log(arr[i], arr[j], arr[k]);
+              newArr.push(arr[i] + arr[j] + arr[k]);
+            }
+          }
+        }
+        //sort를 이용해서 내림차순 정렬 -> 중복 제거ㄴ
+        result = newArr
+          .sort((a, b) => b - a)
+          .filter((it, i) => {
+            return newArr.indexOf(it) === i;
+          });
+        console.log(result);
+
+        //n번째로 큰 값 찾기
+        //만약 3이라면 세 번째에 있는 값
+        //인덱스 2(3 - 1)를 찾으면 된다
+        answer = result[num - 1];
+        return answer; //143!
+      }
+
+      let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+      console.log(solution(3, arr));
+
+      //정식 풀이 -> 중복을 제거하는 자료 구조, set 사용!
+      //set은 중복이 들어가지 않음
+      //   function solution(num, arr) {
+      //     let answer;
+      //     let n = arr.length;
+      //     let tmp = new Set();
+      //     for (let i = 0; i < arr.length; i++) {
+      //       for (let j = i + 1; j < arr.length; j++) {
+      //         for (let k = j + 1; k < arr.length; k++) {
+      //           tmp.add(arr[i] + arr[j] + arr[k]);
+      //         }
+      //       }
+      //     }
+      //     //중복 제거 -> 72개
+      //     //set은 sort 함수 지원 X
+      //     //배열화 !
+      //     let a = Array.from(tmp).sort((a, b) => b - a);
+      //     answer = a[num - 1];
+      //     return answer;
+      //   }
+      //   let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+      //   console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+-현수는 1~100 사이의 자연수가 적힌 N장의 카드를 가지고 있음
+현수는 이 중 3장을 뽑아, 각 카드에 적힌 수를 합한 값을 기록하려고 하
+3장을 뽑을 수 있는모든 경우를 기록 
+기록한 값 중 K번째로 큰 수를 출력함
+
+입력 예제 - 10 3
+[13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+
+출력 예제  - 143
+
+첫 번째 줄에 K번째 수를 출력함
+-아 진심 이거 중복 제거 어떻게 해야하지???
+-세 번째로 큰 값 찾기
+-중복 제거 - 72개 됨
+
+
+- 3장을 뽑을 수 있는 모든 경우를 기록
+- 일단 합을 구한 후, 중복을 제거한다!!
+- 중복을 구조하는 자료 구조 -> set
+
+
+
+ -->

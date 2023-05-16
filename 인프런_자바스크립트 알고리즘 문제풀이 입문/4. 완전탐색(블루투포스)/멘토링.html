@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>멘토링</title>
+  </head>
+  <body>
+    <script>
+      //정식 풀이!
+      function solution(arr) {
+        //멘토/멘티가 될 수 있는 횟수임
+        let answer = 0;
+        let tmp = [];
+        //시험 횟수 m
+        let m = arr.length;
+        //학생수 n - 4
+        let n = arr[0].length;
+        console.log(m, n); //3,4
+        for (let i = 1; i <= n; i++) {
+          for (let j = 1; j <= n; j++) {
+            console.log(i, j); //왜 1 1만 나옴
+            let cnt = 0;
+            for (let k = 0; k < m; k++) {
+              //0부터 2까지(문제의 인덱스)
+              let pi = 0;
+              let pj = 0;
+              //0부터 3까지
+              for (let s = 0; s < n; s++) {
+                if (arr[k][s] === i) pi = s;
+                if (arr[k][s] === j) pj = s;
+              }
+              //멘티(pj)의 등수가 낮을 경우에 카운트 증가!
+              if (pi < pj) cnt++;
+            }
+            if (cnt === m) {
+              //배열 전체를 push해줘야함
+              tmp.push([i, j]);
+              answer++;
+            }
+          }
+        }
+        console.log(tmp);
+        return answer;
+      }
+
+      let num = 3;
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+문제
+멘토링
+
+1,2, 3, 4는 학생 번호
+가장 앞에 있는 쪽이 성적이 높음
+
+
+입력 예제 
+-수학 테스트 등수를  가지고 멘토와 멘티를 정함
+-A학생이 멘토, b학생이 멘티가 되는 짝이 되었다면
+A학생은 M번의 수학테스트에서 모두 B학생보다 등수가 앞서야 함 
+-첫 번째 줄- 반학생수 N(1~20), M(1~10)이 주어짐
+-M은 줄의 의미임
+
+
+4 3
+3 4 1 2
+4 3 2 1
+3 1 4 2
+
+출력 예제 1 
+-짝을 만들 수 있는 총 경우를 출력
+- 3
+
+총 4중 for
+1번째 for문
+2번째 for문
+3번째 for문
+4번째 for문
+
+
+이해안가는데요..
+
+(3) [Array(2), Array(2), Array(2)]
+0
+: 
+(2) [3, 1]
+1
+: 
+(2) [3, 2]
+2
+: 
+(2) [4, 2]
+
+
+
+ -->

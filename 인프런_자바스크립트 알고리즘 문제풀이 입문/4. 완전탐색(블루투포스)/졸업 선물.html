@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>졸업 선물</title>
+  </head>
+  <body>
+    <script>
+      //정식 풀이!
+
+      //m는 예산, produce는 선물의 가격이 적혀있는 표
+      function solution(m, product) {
+        let answer = 0;
+
+        let n = product.length;
+        console.log(n); //5
+        //sort 정렬은 원본 배열까지 바꿈
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+
+        for (let i = 0; i < n; i++) {
+          //1차 for문
+          //현재 예산 - 전체 예산 - 쿠폰을 적용한 index 상품 가격을 뺀 가격
+          let money = m - (product[i][0] / 2 + product[i][1]);
+          let cnt = 1;
+          //일단 하나는 구매했으므로 cnt는 1로 설정함
+          //2차 for문
+          //할인된 상품을 제외한 다른 상품 결제
+          for (let j = 0; j < n; j++) {
+            //i는 이미 구매한 것이므로 i와 j가 같으면 안됨
+            //예산보다 클 경우에는 break;
+            if (j !== i && product[j][0] + product[j][1] > money) break;
+            if (j !== i && product[j][0] + product[j][1] <= money) {
+              //예산과 같거나, 작을 경우에는 -> 널널할 경우
+              //money에서 빼주면 됨, 그리고 cnt++!!
+              money -= product[j][0] + product[j][1];
+              console.log(money);
+              cnt++;
+            }
+          }
+
+          //Math 함수를 이용해 좀 더 큰 값을 출력
+          answer = Math.max(answer, cnt); //4
+        }
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+문제
+-선생님은 올해 졸업하는 반 학생들에게 졸업선물을 주려고 합니다
+학생들에게 쇼핑몰에서 원하는 상품을 골라, 그 상품의 가격과
+배송비를 제출하라고 했습니다. 선생님이 가지고 있는 예산은 한정되어 있습니다
+
+현재 예산으로, 최대 몇 명의 학생에게 선물을 사줄 수 있는지
+구하는 프로그램을 작성
+선생님은 상품 하나를 50% 할인해서(반 가격) 
+살 수 있는 쿠폰을 가지고 있음. 배송비는 상품에 포함되지 않음
+
+상품 가격과 배송비는 각각 100,000을 넘지 않음
+상품 가격은 짝수로만 입력
+
+입력
+
+5 28
+-5 -> 학생수
+28 
+-> 예산
+
+6 6
+2 2
+4 3 
+4 5
+10 3
+
+-> 4
+2, 2
+4, 3
+4, 5
+10, 3
+을 입력받아
+5,3에 사면
+비용이 4 + 7 + 9 + 8 = 28
+
+
+총 비용 정렬 -> sort 이용
+return a -b 
+a[0]+a[1] - b[0]-b[1]
+오름차순 정렬하기
+
+
+
+
+
+
+ -->
