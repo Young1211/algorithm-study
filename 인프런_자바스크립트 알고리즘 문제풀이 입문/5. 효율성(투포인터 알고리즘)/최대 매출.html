@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>최대 매출</title>
+  </head>
+  <body>
+    <script>
+      //정식풀이
+      //슬라이딩 윈도우 사용 - 배열을 한칸씩 밀어가며 합을 구함
+      function solution(num, arr) {
+        let answer = 0; //count
+        let n = arr.length;
+        let sum = 0;
+        //초기 sum의 값 설정
+        //0~num까지의 값을 미리 구해놓음
+        for (let i = 0; i < num; i++) {
+          sum += arr[i]; //38
+        }
+        answer = sum;
+        //num(일정 매출 기간)만큼 반복문 돌림
+        //지나왔던 요소를 빼고, i가 도달한 요소를 sum에 누적함
+        //max 함수를 이용해서 최대값 구하기
+        for (let i = num; i < n; i++) {
+          sum += arr[i] - arr[i - num];
+          answer = Math.max(answer, sum);
+        }
+
+        return answer;
+      }
+      var arr = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      console.log(solution(3, arr)); //56
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+문제 - 최대 매출
+현수의 아빠는 제과점을 운영함
+현수 아빠는 현수에게 N일동안의 매출기록을 주고,
+연속된 K일 동안의 최대 매출액이 얼마인지 구하라고 햇음
+만약 N이 10이고, 10일 간의 매출기록이 아래와 같음
+이 때 K = 3이면 
+12 15 11 20 25 10 20 19 13 15
+-연속된 3일간의 최대 매출액은 
+11 + 20 + 25 = 56만원임
+
+입력
+10 3
+12 15 11 20 25 10 20 19 13 15
+
+출력
+56
+
+
+
+
+
+ -->

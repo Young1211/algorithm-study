@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>아나그램</title>
+  </head>
+  <body>
+    <script>
+      //정식 풀이
+      function solution(str1, str2) {
+        let answer = "Yes";
+        let map = new Map();
+        for (let i of str1) {
+          if (map.has(i)) {
+            //i라는 알파벳 key가 이미 있다면 새로운 값으로 덮어씌움/ 1 증가
+            map.set(i, map.get(i) + 1);
+          } else {
+            map.set(i, 1);
+          }
+        }
+
+        //str2의 for문
+        //str1로 생성된 map 객체에 str2의 특정 요소가 있나 확인
+        for (let x of str2) {
+          if (!map.has(x) || map.get(x) === 0) {
+            //or 연산자는 앞의 내용이 true이면 뒤의 내용 보지 않음
+            return "No";
+          } else {
+            //존재하지 않으므로 거짓
+            map.set(x, map.get(x) - 1);
+          }
+        }
+        return answer;
+
+        //console.log(map2);
+        //[키, 값 ] 쌍을 대상으로 순회하는 메서드 -> entries
+        const iterator1 = map.entries();
+        return answer;
+      }
+      let str1 = "AbaAeCe";
+      let str2 = "baeeACA";
+      console.log(solution(str1, str2)); //Yes
+
+      let str3 = "abaCC";
+      let str4 = "Baaab";
+      console.log(solution(str3, str4)); //No
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+아나그램 - (해쉬)
+
+-아나 그램은 둔 문자열이 알파벳의 나열 순서는 다르지만,
+그 구성이 일치하면 두 단어를 아나그램이라고 함
+AbaAeCe와 baeeACA는 알파벳 나열 순서는 다르지만
+그 구성을 살펴보면, A(2), a(1), b(1), C(1), e(2)로 알파벳과 
+그 개수가 일치함
+어느 한 단어를 재배열하면 상대편 단어가 될 수 있는 걸 아나그램이라고 함
+
+길이가 같은 두 개의 단어가 주어지면 두 단어가 아나그램인지
+판별하는 프로그램을 작성하세요 
+
+입력 예제
+  let str1 = "AbaAeCE";
+  let str2 = "baeeACA";
+출력 예제
+-> Yes
+
+-map 객체의 key와 value 값을 
+순회하면서 비교
+
+-map은 순서가 없는 map 객체 
+
+알파벳과 그 개수가 일치
+-> key와 value 값이 모두 똑같음
+
+
+
+ -->
