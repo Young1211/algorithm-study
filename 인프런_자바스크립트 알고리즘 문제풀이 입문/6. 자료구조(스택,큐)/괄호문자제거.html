@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>괄호문자제거</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        let answer;
+        let stack = [];
+        for (let x of str) {
+          if (x === ")") {
+            //여는 괄호가 나올 때까지 -> 나온다면 false
+            //pop으로 마지막 요소 제거
+            while (stack.pop() !== "(") {}
+          } else stack.push(x);
+          //나머지 알파벳과 괄호는 push해줌
+        }
+        //문자열로 변환
+        answer = stack.join("");
+        return answer;
+      }
+      //만약 괄호의 짝이 맞지 않는다면 -> 무한루프
+
+      let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
+
+<!-- 
+-입력된 문자열에서 소괄호 ( ) 사이에 존재하는 모든 문자를 제거하고
+남은 문자만 출력하는 프로그램을 작성하세요
+
+입력 예제
+(A(BC)D)EF(G(H)(IJ)K)LM(N)
+
+출력 예제
+EFLM
+
+소괄호 사이에 있는 문자 제거
+여는 괄호 ~ 닫는 괄호
+
+stack을 사용
+
+여는 괄호 이후부터 문자들을 stack에 push
+닫는 괄호가 나오는 순간 여는 괄호의 짝을 찾음
+알파벳들은 제거해줘야함
+괄호 사이에 있는 것들은 제거
+
+
+ -->
