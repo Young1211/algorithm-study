@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>후위식 연산</title>
+  </head>
+  <body>
+    <script>
+      //정식 풀이
+      //stack을 사용함
+      //후위식 연산 -> 연산자가 뒤로 감
+      //숫자를 만나면 push먼저 함
+      //연산자를 만났을 때 연산자 우선순위를 고려해야함
+      //*가 +보다 우선순위가 높다
+
+      function solution(s) {
+        let answer;
+        let stack = [];
+        //for .. of문으로 순회
+        for (let i of s) {
+          //숫자 판별 -> isNaN 숫자가 아니면 true
+          if (!isNaN(i)) {
+            //숫자들만 push해줌
+            stack.push(Number(i));
+          } else {
+            //연산자면
+            //연산자를 만나면 가장 마지막에 있는 요소는 rt
+            //그 앞에 있는 요소는 lt에 집어넣는다
+            let rt = stack.pop();
+            let lt = stack.pop();
+            //연산
+            if (i === "+") {
+              stack.push(lt + rt);
+            } else if (i === "-") {
+              stack.push(lt - rt);
+            } else if (i === "*") {
+              stack.push(lt * rt);
+            } else if (i === "/") {
+              stack.push(lt / rt);
+            }
+          }
+        }
+
+        //console.log(stack);
+        answer = stack[0];
+        return answer;
+      }
+
+      let str = "352+*9-";
+      console.log(solution(str)); //12
+    </script>
+  </body>
+</html>

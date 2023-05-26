@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>올바른 괄호</title>
+  </head>
+  <body>
+    <script>
+      //내 풀이 -> stack 사용하지 않음
+      //for of문을 돌다가 열기 괄호를 만나면 cnt에 카운팅
+      //닫기 괄호를 만나면 cnt2에 카운팅을 해서
+      //만약 둘의 개수가 일치하면 Yes 아니라면 No
+      //   function solution(str) {
+      //     let answer = "Yes";
+      //     let cnt = 0;
+      //     let cnt2 = 0;
+      //     for (let i of str) {
+      //       if (i === "(") {
+      //         cnt++;
+      //       } else if (i === ")") {
+      //         cnt2++;
+      //       }
+      //     }
+      //     console.log(cnt, cnt2);
+      //     if (cnt !== cnt2) {
+      //       answer = "No";
+      //     }
+      //     return answer;
+      //   }
+      //   let str = "(()(()))(()";
+      //   let str2 = "()";
+      //   console.log(solution(str));
+
+      //정식 풀이
+      function solution(str) {
+        let answer = "Yes";
+        //빈 배열 선언
+        let stack = [];
+        //for of 사용으로 탐색
+        for (let i of str) {
+          //i가 여는 괄호일 때
+          if (i === "(") {
+            stack.push(i);
+            //닫는 괄호 -> 빼버림
+          } else {
+            if (stack.length === 0) return "No";
+            stack.pop();
+            //여는 괄호가 없을 때 No 리턴(짝이 없음)
+          }
+        }
+        //열기 괄호가 더 많음 ( - 짝이 없음
+        if (stack.length > 0) return "NO";
+        return answer;
+      }
+      let str = "(()(()))(()";
+      let str2 = "()";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
+
+<!-- 
+올바른 괄호
+
+(())()
+-올바른 괄호
+-for을 이용해서 글자 하나하나 탐색
+(라면 count1에 추가
+)라면 count2에 추가
+만약 count1과 count2가 같다면 "Yes", 아니라면 No
+
+
+
+
+ -->
