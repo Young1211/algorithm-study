@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택정렬</title>
+  </head>
+  <body>
+    <script>
+      //내 풀이
+
+      function solution(arr) {
+        let answer = arr;
+        let temp;
+        //탐색
+        for (let i = 0; i < arr.length - 1; i++) {
+          let min = i;
+          //최소값은 일단 i로 잡아둠
+          //0번째에 있는 i가 최소값이 됨
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[min]) {
+              //arr[j]의 값이 a[min]보다 작으 경우에는
+              //min의 값이 j가 됨
+              //min과 j는 인덱스 번호
+              min = j;
+            }
+          }
+          //temp 변수를 이용한 방법
+          //   temp = arr[i];
+          //   arr[i] = arr[min];
+          //   arr[min] = temp;
+
+          [arr[i], arr[min]] = [arr[min], arr[i]];
+        }
+
+        return answer;
+      }
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr)); // [5, 7, 11, 13, 15, 23]
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>버블정렬</title>
+  </head>
+  <body>
+    <script>
+      //버블 정렬
+      //큰 숫자가 오른쪽임
+      function solution(arr) {
+        //얕은 복사
+        let answer = arr;
+        let n = arr.length;
+        //i는 총 반복할 횟수, 횟차
+        //외부 for문
+        for (let i = 0; i < n - 1; i++) {
+          //내부 for문
+          for (let j = 0; j < n - i - 1; j++) {
+            //탐색 비교
+            //현재 값이, 비교하는 값보다 클 경우, swap
+            // if (arr[j] > arr[j + 1]) {
+            //   let temp = arr[j];
+            //   arr[j] = arr[j + 1];
+            //   arr[j + 1] = temp;
+            // }
+            //2. temp 변수를 사용하지 않고 swap
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; //) [15, 23, 7, 11, 5, 13]
+          }
+        }
+
+        return answer;
+      }
+      let arr = [13, 5, 11, 7, 23, 15]; //5, 7, 11, 13,15,24S
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+이중 for문
+
+외부 for문 
+-i는 총 5바퀴를 돌면되므로
+-0~4까지! 전체 길이 -1
+내부 for문
+-arr[j] > arr[j+1]
+
+i가 0일 때 쭉 돎
+
+버블 정렬은 제일 큰 숫자가 오른쪽에 있음
+
+선택 정렬은 
+-내부 for문이 끝났을 때 swap
+
+버블 정렬은 for문을 돌면서 swap
+
+
+ -->
