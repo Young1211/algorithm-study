@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>공주구하기</title>
+  </head>
+  <body>
+    <script>
+      //정식 풀이 - 이따가 개념 이해하기
+
+      function solution(n, k) {
+        //num -> 특정 숫자 total, total 인원 명수
+        let answer;
+        let queue = [];
+        for (let i = 0; i < n; i++) {
+          queue.push(i + 1);
+        }
+        //유사 배열 사용
+
+        console.log(queue);
+        //[1, 2, 3, 4, 5, 6, 7, 8]
+        //for문을 돌면서 3 -> 즉, 인덱스가 2인 것을 지워주면 됨
+        //그리고, 다음 왕자의 인덱스를 다시 0으로 바꿔줌
+        while (queue.length) {
+          //첫 번째 요소, 두 번째 요소를 삭제후, 배열 뒤에 push해줌
+          //제거한 맨 앞의 요소 push
+          //반복문이므로 다시 돌아옴
+          for (let i = 1; i < k; i++) queue.push(queue.shift());
+          queue.shift(); //앞에 있는 요소 삭제
+          //길이가 1일 때 -> 요소 하나만 남았을 때
+          if (queue.length === 1) answer = queue.shift();
+        }
+        return answer;
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>

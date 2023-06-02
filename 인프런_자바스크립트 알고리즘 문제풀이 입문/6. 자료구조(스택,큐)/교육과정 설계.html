@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>교육과정 설계</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, s2) {
+        let answer = "Yes";
+        let queue = [];
+        for (let i of s) {
+          queue.push(i);
+        }
+        //split('')함수를 사용해도 됨
+        //두번째 인자로 받은 문자열 -> 수업 계획 순회
+        //요소가 있는지 확인하기\
+        for (let x of s2) {
+          if (queue.includes(x)) {
+            //포함되었는지 확인 , true일 경우에만 실행
+            if (x !== queue.shift()) {
+              //shift한 값이 x와 다르면 "No"
+              return "No";
+            }
+          }
+        }
+        if (queue.length > 0) {
+          //필수 과목이 queue에 남아있을 때
+          return "No";
+        }
+
+        console.log(queue);
+
+        return answer;
+      }
+      let str = "CBA";
+      let str2 = "CBDAGE";
+      console.log(solution(str, str2));
+    </script>
+  </body>
+</html>

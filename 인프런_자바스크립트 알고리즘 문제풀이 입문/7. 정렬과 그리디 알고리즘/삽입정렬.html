@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>삽입정렬</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = arr;
+        let n = arr.length;
+        let j;
+        //외부 for문
+        for (let i = 1; i < n; i++) {
+          let temp = arr[i];
+          //temp는 일종의 key값
+          //내부 for문
+          for (j = i - 1; j >= 0; j--) {
+            //한 칸 뒤로감
+            if (arr[j] > temp) {
+              arr[j + 1] = arr[j];
+            } else break;
+          }
+          console.log(j);
+          //arr[j+1]에 삽입, 비교값
+          arr[j + 1] = temp;
+        }
+        //다른 방법
+        return answer;
+      }
+      let arr = [11, 7, 5, 6, 10, 9];
+      console.log(solution(arr)); // [5, 6, 7, 9, 10, 11]
+    </script>
+  </body>
+</html>
+
+<!-- 
+
+삽입 정렬
+
+for문이 돌기 전에 임시 변수 tmp에 
+arr[i]의 값을 넣음
+
+arr[j]가 tep보다 크면
+arr[j+1] = arr[j]
+이렇게 복사를 해줌
+
+tmp에다가 arr[i]의 값을 넣어두고,
+복사함!
+j가 끝난지점 바로 뒤에 정렬함
+
+참이면 뒤로 복사
+아니면 break;
+
+
+안쪽 for문에서 도는 j가
+-1이 되었을 때 -> for문 탈출
+arr[j+1] -> arr[-1+1] arr[0] = temp
+값을 바꿈 
+
+
+ -->

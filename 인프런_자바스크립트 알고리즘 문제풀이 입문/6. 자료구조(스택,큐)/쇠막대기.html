@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쇠막대기</title>
+  </head>
+  <body>
+    <script>
+      //정식 풀이
+      //stack의 push와 pop을 사용함
+      function solution(str) {
+        let answer = 0;
+        let stack = [];
+        for (let i = 0; i < str.length; i++) {
+          if (str[i] === "(") {
+            stack.push(str[i]);
+          } else {
+            //닫는 괄호 - 레이저의 괄호, 막대기의 끝
+            stack.pop();
+            if (str[i - 1] === "(") {
+              //레이저의 괄호
+              answer += stack.length;
+            } else {
+              //막대기의 끝일 때는 1 누적
+              answer += 1;
+            }
+          }
+        }
+
+        return answer;
+      }
+      let str = "()(((()())(())()))(())";
+      console.log(solution(str)); //17
+    </script>
+  </body>
+</html>
